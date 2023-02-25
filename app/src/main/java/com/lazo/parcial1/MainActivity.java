@@ -26,11 +26,10 @@ import java.io.FileOutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    private final int REQUEST_CODE_ASK_PERMISSION = 1;
     Button btnCompartir;
     ImageView imgFoto;
-
     Uri uriImg;
+    private final int REQUEST_CODE_ASK_PERMISSION = 1;
 
 
 
@@ -55,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intentW = new Intent(Intent.ACTION_SEND);
                 intentW.setType("image/*");
                 intentW.setPackage("com.whatsapp");
-                //Para enviar por correo
-                //intentW.setPackage("com.google.android.gm");
 
                 if (uriImg != null){
 
@@ -65,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         startActivity(intentW);
                     }catch (Exception e){
-                        Toast.makeText(MainActivity.this, "Error al enviar\n"+e.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "Error al enviar el Archivo\n"+e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
                 }else {
-                    Toast.makeText(MainActivity.this, "No se selecciono una imagen", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "No has seleccionado una imagen", Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -83,11 +80,13 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     startActivityForResult(intentGaleria, 1);
                 }catch (Exception e){
-                    Toast.makeText(MainActivity.this, "Error al abrir galeria\n"+e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "Error al abrir Galería\n"+e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
